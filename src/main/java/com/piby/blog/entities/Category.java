@@ -16,11 +16,12 @@ public class Category {
     private Long id;
     private String title;
     private String description;
-
     @ManyToOne
     @JoinColumn(name="user_id")
     private User user;
-
+    @ManyToMany
+    @JoinColumn(name="category_id", referencedColumnName="id")
+    private List<Post> posts;
 
 
     public Category(String title, String description, User user) {
