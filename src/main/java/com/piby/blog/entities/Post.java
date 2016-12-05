@@ -28,8 +28,7 @@ public class Post {
 	private Double rating;
 	@OneToMany(mappedBy = "post")
 	private List<Comment> comment;
-	@ManyToMany
-	@JoinColumn(name="post_id", referencedColumnName="id")
+	@ManyToMany(mappedBy="posts")
 	private List<Category> categories;
 
 	private Post() {

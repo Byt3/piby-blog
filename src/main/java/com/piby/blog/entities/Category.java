@@ -20,7 +20,10 @@ public class Category {
     @JoinColumn(name="user_id")
     private User user;
     @ManyToMany
-    @JoinColumn(name="category_id", referencedColumnName="id")
+    @JoinTable(
+            name="category2project",
+            joinColumns=@JoinColumn(name="category_id", referencedColumnName="id"),
+            inverseJoinColumns=@JoinColumn(name="post_id", referencedColumnName="id"))
     private List<Post> posts;
 
 
