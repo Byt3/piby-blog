@@ -1,14 +1,15 @@
 package com.piby.blog.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javafx.geometry.Pos;
+
+import javax.persistence.*;
+import java.util.List;
 
 /**
  * Created by Lorenzo on 05/12/16.
  */
 @Entity
+@Table(name = "category")
 public class Category {
 
     @Id @GeneratedValue(strategy = GenerationType.AUTO)
@@ -16,32 +17,27 @@ public class Category {
     private String title;
     private String description;
 
-    public Category(String title, String description) {
+    @ManyToOne
+    @JoinColumn(name="user_id")
+    private User user;
+
+
+
+    public Category(String title, String description, User user) {
         this.title = title;
         this.description = description;
+        this.user = user;
     }
 
-    public Long getId() {
-        return id;
+
+    @Override
+    public String toString() {
+        String result = "";
+
+        //ToDo: Restituire NomeCategoria(num. posts associati)
+
+        return result;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }

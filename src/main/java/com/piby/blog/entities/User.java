@@ -31,6 +31,8 @@ public class User {
 	private List<Post> post;
 	@OneToMany(mappedBy = "user")
 	private List<Comment> comment;
+	@OneToMany(mappedBy = "user")
+	private List<Category> categories;
 	
 	@OneToOne
 	private Inbox cart;
