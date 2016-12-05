@@ -17,7 +17,6 @@ public class Category {
     private String title;
     private String description;
     @ManyToOne
-    @JoinColumn(name="user_id")
     private User user;
     @ManyToMany
     @JoinTable(
@@ -27,20 +26,17 @@ public class Category {
     private List<Post> posts;
 
 
-    public Category(String title, String description, User user) {
+    public Category(String title, String description, User user, List<Post> posts) {
         this.title = title;
         this.description = description;
         this.user = user;
+        this.posts = posts;
     }
 
 
     @Override
     public String toString() {
-        String result = "";
-
-        //ToDo: Restituire NomeCategoria(num. posts associati)
-
-        return result;
+        return this.title + "(" + this.posts.size() + ")";
     }
 
 

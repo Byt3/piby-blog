@@ -28,14 +28,14 @@ public class Post {
 	private Double rating;
 	@OneToMany(mappedBy = "post")
 	private List<Comment> comment;
-	@ManyToMany(mappedBy="posts")
+	@ManyToMany
 	private List<Category> categories;
 
 	private Post() {
 	}
 
 	public Post(Long id, String title, Date creationDate, Date updateDate, int views, Double rating,
-			List<Comment> comment) {
+			List<Comment> comment, List<Category> categories) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -44,6 +44,7 @@ public class Post {
 		this.views = views;
 		this.rating = rating;
 		this.comment = comment;
+		this.categories = categories;
 	}
 
 	public Long getId() {
