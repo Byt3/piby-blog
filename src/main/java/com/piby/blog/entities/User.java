@@ -10,14 +10,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-
 /**
  * @author marco
  *
  */
 @Entity
 @Table(name = "user")
+@SuppressWarnings("unused")
 public class User {
 
 	@Id
@@ -35,14 +34,15 @@ public class User {
 	private List<Comment> comment;
 	@OneToMany(mappedBy = "user")
 	private List<Category> categories;
-	
+
 	@OneToOne
 	private Inbox cart;
 
 	private User() {
 	}
 
-	public User(Long id, String name, String email, String password, int age, List<Post> post) {
+	public User(Long id, String name, String email, String password, int age, List<Post> post, List<Comment> comment,
+			List<Category> categories, Inbox cart) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -50,6 +50,9 @@ public class User {
 		this.password = password;
 		this.age = age;
 		this.post = post;
+		this.comment = comment;
+		this.categories = categories;
+		this.cart = cart;
 	}
 
 	public Long getId() {

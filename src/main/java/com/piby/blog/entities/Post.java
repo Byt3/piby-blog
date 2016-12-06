@@ -3,9 +3,18 @@ package com.piby.blog.entities;
 import java.sql.Date;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author marco
@@ -19,37 +28,33 @@ public class Post {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name="user_id", nullable=false, updatable=false)
+	@NotNull
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "users_id", nullable = false)
 	private User user;
-
 	private String title;
 	private Date creationDate;
 	private Date updateDate;
 	private int views;
+	@JsonIgnore
 	private Double rating;
-
 	@OneToMany(mappedBy = "post")
 	private List<Comment> comment;
-
-	@ManyToMany
-	private List<Category> categories;
 
 	private Post() {
 	}
 
-	public Post(Long id, String title, Date creationDate, Date updateDate, int views, Double rating,
-			List<Comment> comment, List<Category> categories) {
+	public Post(Long id, User user, String title, Date creationDate, Date updateDate, int views, Double rating,
+			List<Comment> comment) {
 		super();
 		this.id = id;
+		this.user = user;
 		this.title = title;
 		this.creationDate = creationDate;
 		this.updateDate = updateDate;
 		this.views = views;
 		this.rating = rating;
 		this.comment = comment;
-		this.categories = categories;
 	}
 
 	public Long getId() {
@@ -108,19 +113,13 @@ public class Post {
 		this.comment = comment;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
-	}
-
+//	@JsonIgnore
 	public User getUser() {
 		return user;
 	}
 
-	public List<Category> getCategories() {
-		return categories;
+	public void setUser(User user) {
+		this.user = user;
 	}
+
 }
