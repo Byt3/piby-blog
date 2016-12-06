@@ -1,6 +1,6 @@
 package com.piby.blog.repositories;
 
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.piby.blog.entities.Comment;
@@ -13,6 +13,6 @@ import com.piby.blog.entities.Comment;
 
 
 @RepositoryRestResource
-public interface CommentRepository extends PagingAndSortingRepository<Comment, Long> {
+public interface CommentRepository extends JpaRepository<Comment, Long> {
 
 }
