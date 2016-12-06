@@ -1,9 +1,12 @@
 package com.piby.blog.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,8 +24,12 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @Entity
 @Table(name = "comment")
 @SuppressWarnings("unused")
-public class Comment {
+public class Comment implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -754063661980359122L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -31,11 +38,12 @@ public class Comment {
 	private Date creationDate;
 	private Date updateDate;
 	private String editedBy;
-	@ManyToOne
+
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private User user;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Post post;
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Comment parent;
 	@OneToMany(mappedBy = "parent")
 	private List<Comment> children;
@@ -45,7 +53,6 @@ public class Comment {
 
 	public Comment(Long id, String text, String title, Date creationDate, Date updateDate, String editedBy, User user,
 			Comment parent, List<Comment> children) {
-		super();
 		this.id = id;
 		this.text = text;
 		this.title = title;
@@ -111,6 +118,14 @@ public class Comment {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Post getPost() {
+		return post;
+	}
+
+	public void setPost(Post post) {
+		this.post = post;
 	}
 
 	public Comment getParent() {

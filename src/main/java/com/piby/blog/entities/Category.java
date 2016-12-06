@@ -1,6 +1,5 @@
 package com.piby.blog.entities;
 
-import javafx.geometry.Pos;
 
 import javax.persistence.*;
 import java.util.List;

@@ -9,10 +9,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
 
 @SpringBootApplication
-//@Configuration
-//@EnableJpaRepositories
-//@Import(RepositoryRestMvcConfiguration.class)
-//@EnableAutoConfiguration
 public class PibyBlogApplication {
 
 	public static void main(String[] args) {

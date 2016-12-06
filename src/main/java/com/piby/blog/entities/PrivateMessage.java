@@ -1,6 +1,10 @@
 package com.piby.blog.entities;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,18 +19,21 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
  *
  */
 
-
 @Entity
 @Table(name = "private_messages")
-public class PrivateMessage {
+public class PrivateMessage implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3744656510094686707L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String productName;
 	private String productDesc;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "inbox_id", nullable = false)
 	private Inbox inbox;
 
