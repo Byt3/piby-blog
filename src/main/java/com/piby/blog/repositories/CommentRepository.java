@@ -17,6 +17,6 @@ import com.piby.blog.entities.User;
 @RepositoryRestResource
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 	
-	Iterable<Comment> findAllByUserAndParentNotNull(@Param("user") User user);
+	Iterable<Comment> findAllByUserIdAndParentNotNull(@Param("user") Long user);
 
 }
