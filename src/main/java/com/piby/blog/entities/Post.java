@@ -1,17 +1,11 @@
 package com.piby.blog.entities;
 
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -41,11 +35,13 @@ public class Post {
 	@OneToMany(mappedBy = "post")
 	private List<Comment> comment;
 
-	private Post() {
-	}
+	@ManyToMany(mappedBy="posts")
+	private List<Category> categories;
+
+	private Post() {}
 
 	public Post(Long id, User user, String title, Date creationDate, Date updateDate, int views, Double rating,
-			List<Comment> comment) {
+			List<Comment> comment, List<Category> categories) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -122,4 +118,9 @@ public class Post {
 		this.user = user;
 	}
 
+//	public void setCategories(List<Category> categories) { this.categories = categories;  }
+//
+//	public List<Category> getCategories() {
+//		return categories;
+//	}
 }

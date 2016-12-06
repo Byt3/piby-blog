@@ -26,23 +26,17 @@ public class User {
 	private String email;
 	private String password;
 	private int age;
-
 	@OneToMany(mappedBy = "user")
 	private List<Post> post;
-
 	@OneToMany(mappedBy = "user")
 	private List<Comment> comment;
-	@OneToMany(mappedBy = "user")
-	private List<Category> categories;
-
 	@OneToOne
-	private Inbox cart;
+	private Inbox inbox;
 
 	private User() {
 	}
 
-	public User(Long id, String name, String email, String password, int age, List<Post> post, List<Comment> comment,
-			List<Category> categories, Inbox cart) {
+	public User(Long id, String name, String email, String password, int age, List<Post> post, List<Comment> comment, Inbox inbox) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -51,8 +45,7 @@ public class User {
 		this.age = age;
 		this.post = post;
 		this.comment = comment;
-		this.categories = categories;
-		this.cart = cart;
+		this.inbox = inbox;
 	}
 
 	public Long getId() {
@@ -96,11 +89,11 @@ public class User {
 	}
 
 	public Inbox getCart() {
-		return cart;
+		return inbox;
 	}
 
-	public void setCart(Inbox cart) {
-		this.cart = cart;
+	public void setCart(Inbox inbox) {
+		this.inbox = inbox;
 	}
 
 	public List<Post> getPost() {
@@ -115,16 +108,7 @@ public class User {
 		this.comment = comment;
 	}
 
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
-	}
-
 	public List<Comment> getComment() {
 		return comment;
 	}
-
-	public List<Category> getCategories() {
-		return categories;
-	}
-
 }

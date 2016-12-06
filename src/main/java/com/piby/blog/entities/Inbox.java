@@ -26,10 +26,8 @@ public class Inbox {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "inbox")
 	private List<PrivateMessage> privateMessage;
-
 	@OneToOne
 	private User user;
 
