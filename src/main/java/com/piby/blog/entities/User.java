@@ -1,5 +1,6 @@
 package com.piby.blog.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -12,16 +13,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonValue;
-
 /**
  * @author marco
  *
  */
 @Entity
 @Table(name = "user")
-public class User {
+@SuppressWarnings("unused")
+public class User implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4902853574452836518L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -33,14 +37,11 @@ public class User {
 	private List<Post> post;
 	@OneToMany(mappedBy = "user")
 	private List<Comment> comment;
-	
 	@OneToOne
 	private Inbox inbox;
 
 	private User() {
 	}
-
-
 
 	public User(Long id, String name, String email, String password, int age, List<Post> post, List<Comment> comment,
 			Inbox inbox) {
@@ -54,8 +55,6 @@ public class User {
 		this.comment = comment;
 		this.inbox = inbox;
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -109,11 +108,16 @@ public class User {
 		return post;
 	}
 
-	@JsonValue
 	public void setPost(List<Post> post) {
 		this.post = post;
 	}
 
-	
-	
+	public List<Comment> getComment() {
+		return comment;
+	}
+
+	public void setComment(List<Comment> comment) {
+		this.comment = comment;
+	}
+
 }

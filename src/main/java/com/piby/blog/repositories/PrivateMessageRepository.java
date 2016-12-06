@@ -3,7 +3,7 @@
  */
 package com.piby.blog.repositories;
 
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.piby.blog.entities.PrivateMessage;
@@ -14,6 +14,6 @@ import com.piby.blog.entities.PrivateMessage;
  */
 
 @RepositoryRestResource
-public interface PrivateMessageRepository extends PagingAndSortingRepository<PrivateMessage, Long> {
+public interface PrivateMessageRepository extends JpaRepository<PrivateMessage, Long> {
 
 }
