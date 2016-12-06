@@ -21,6 +21,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @Entity
 @Table(name = "private_messages")
+@SuppressWarnings("unused")
 public class PrivateMessage implements Serializable {
 
 	/**
@@ -30,9 +31,8 @@ public class PrivateMessage implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String productName;
-	private String productDesc;
-
+	private String title;
+	private String message;
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "inbox_id", nullable = false)
 	private Inbox inbox;
@@ -40,11 +40,28 @@ public class PrivateMessage implements Serializable {
 	private PrivateMessage() {
 	}
 
-	public PrivateMessage(Long id, String productName, String productDesc) {
+	public PrivateMessage(Long id, String title, String message, Inbox inbox) {
 		super();
 		this.id = id;
-		this.productName = productName;
-		this.productDesc = productDesc;
+		this.title = title;
+		this.message = message;
+		this.inbox = inbox;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	public Long getId() {
@@ -53,22 +70,6 @@ public class PrivateMessage implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getProductName() {
-		return productName;
-	}
-
-	public void setProductName(String productName) {
-		this.productName = productName;
-	}
-
-	public String getProductDesc() {
-		return productDesc;
-	}
-
-	public void setProductDesc(String productDesc) {
-		this.productDesc = productDesc;
 	}
 
 	public Inbox getInbox() {

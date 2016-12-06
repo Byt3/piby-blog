@@ -2,14 +2,14 @@ package com.piby.blog.entities;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * @author marco
@@ -28,37 +28,46 @@ public class Post implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id", nullable = false, updatable = false)
+	@NotNull
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "users_id", nullable = false)
 	private User user;
-
 	private String title;
+	private String text;
 	private Date creationDate;
 	private Date updateDate;
 	private int views;
+	@JsonIgnore
 	private Double rating;
-
 	@OneToMany(mappedBy = "post")
 	private List<Comment> comment;
-
-	@ManyToMany
+	@ManyToMany(mappedBy = "posts")
 	private List<Category> categories;
 
 	private Post() {
 	}
 
-	public Post(Long id, String title, Date creationDate, Date updateDate, int views, Double rating,
-			List<Comment> comment, List<Category> categories) {
+	public Post(Long id, User user, String title, String text, Date creationDate, Date updateDate, int views,
+			Double rating, List<Comment> comment, List<Category> categories) {
 		super();
 		this.id = id;
+		this.user = user;
 		this.title = title;
+		this.text = text;
 		this.creationDate = creationDate;
 		this.updateDate = updateDate;
 		this.views = views;
 		this.rating = rating;
 		this.comment = comment;
 		this.categories = categories;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
 	}
 
 	public Long getId() {

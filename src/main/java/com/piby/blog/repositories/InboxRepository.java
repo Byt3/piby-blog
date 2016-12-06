@@ -1,6 +1,6 @@
 package com.piby.blog.repositories;
 
-import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.piby.blog.entities.Inbox;
@@ -11,6 +11,6 @@ import com.piby.blog.entities.Inbox;
  */
 
 @RepositoryRestResource
-public interface InboxRepository extends PagingAndSortingRepository<Inbox, Long> {
+public interface InboxRepository extends JpaRepository<Inbox, Long> {
 
 }

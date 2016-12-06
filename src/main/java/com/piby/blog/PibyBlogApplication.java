@@ -16,6 +16,7 @@ import com.piby.blog.entities.User;
 @SpringBootApplication
 public class PibyBlogApplication {
 
+
 	public static void main(String[] args) {
 		SpringApplication.run(PibyBlogApplication.class, args);
 	}

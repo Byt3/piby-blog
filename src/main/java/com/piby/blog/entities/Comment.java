@@ -52,7 +52,8 @@ public class Comment implements Serializable {
 	}
 
 	public Comment(Long id, String text, String title, Date creationDate, Date updateDate, String editedBy, User user,
-			Comment parent, List<Comment> children) {
+			Post post, Comment parent, List<Comment> children) {
+		super();
 		this.id = id;
 		this.text = text;
 		this.title = title;
@@ -60,6 +61,7 @@ public class Comment implements Serializable {
 		this.updateDate = updateDate;
 		this.editedBy = editedBy;
 		this.user = user;
+		this.post = post;
 		this.parent = parent;
 		this.children = children;
 	}
@@ -143,5 +145,7 @@ public class Comment implements Serializable {
 	public void setChildren(List<Comment> children) {
 		this.children = children;
 	}
+	
+	
 
 }
