@@ -14,12 +14,6 @@ import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguratio
 @SpringBootApplication
 public class PibyBlogApplication {
 
-//	@Autowired
-//	private CategoryRepository categoryRepository;
-//
-//	@Autowired
-//	private PostRepository postRepository;
-
 	public static void main(String[] args) {
 		SpringApplication.run(PibyBlogApplication.class, args);
 	}
