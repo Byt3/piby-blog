@@ -15,6 +15,5 @@ import com.piby.blog.entities.User;
 public interface UserRepository extends PagingAndSortingRepository<User, Long> {
 
 	User findByName(@Param("name") String name);
-
 	Iterable<User> findByNameOrderByAgeAsc(@Param("name") String name);
 }

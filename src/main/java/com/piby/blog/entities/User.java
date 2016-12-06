@@ -2,7 +2,9 @@ package com.piby.blog.entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 /**
  * @author marco
@@ -27,18 +29,21 @@ public class User {
 	private String email;
 	private String password;
 	private int age;
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private List<Post> post;
 	@OneToMany(mappedBy = "user")
 	private List<Comment> comment;
 	
 	@OneToOne
-	private Inbox cart;
+	private Inbox inbox;
 
 	private User() {
 	}
 
-	public User(Long id, String name, String email, String password, int age, List<Post> post) {
+
+
+	public User(Long id, String name, String email, String password, int age, List<Post> post, List<Comment> comment,
+			Inbox inbox) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -46,7 +51,11 @@ public class User {
 		this.password = password;
 		this.age = age;
 		this.post = post;
+		this.comment = comment;
+		this.inbox = inbox;
 	}
+
+
 
 	public Long getId() {
 		return id;
@@ -88,18 +97,19 @@ public class User {
 		this.age = age;
 	}
 
-	public Inbox getCart() {
-		return cart;
+	public Inbox getInbox() {
+		return inbox;
 	}
 
-	public void setCart(Inbox cart) {
-		this.cart = cart;
+	public void setInbox(Inbox inbox) {
+		this.inbox = inbox;
 	}
 
 	public List<Post> getPost() {
 		return post;
 	}
 
+	@JsonValue
 	public void setPost(List<Post> post) {
 		this.post = post;
 	}

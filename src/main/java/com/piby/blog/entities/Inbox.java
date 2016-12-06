@@ -18,7 +18,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
  *
  */
 
-
 @Entity
 @Table(name = "inbox")
 public class Inbox {
@@ -30,8 +29,9 @@ public class Inbox {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "inbox")
 	private List<PrivateMessage> privateMessage;
 
-	@OneToOne
-	private User user;
+	public Inbox() {
+
+	}
 
 	public Inbox(Long id, List<PrivateMessage> privateMessage) {
 		super();
@@ -53,14 +53,6 @@ public class Inbox {
 
 	public void setPrivateMessage(List<PrivateMessage> privateMessage) {
 		this.privateMessage = privateMessage;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 }

@@ -4,14 +4,15 @@ import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author marco
@@ -25,7 +26,9 @@ public class Post {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@ManyToOne
+	@NotNull
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "users_id", nullable = false)
 	private User user;
 	private String title;
 	private Date creationDate;
@@ -104,6 +107,14 @@ public class Post {
 
 	public void setComment(List<Comment> comment) {
 		this.comment = comment;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }
