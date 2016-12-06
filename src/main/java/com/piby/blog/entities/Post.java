@@ -1,11 +1,15 @@
 package com.piby.blog.entities;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 /**
  * @author marco
@@ -14,14 +18,19 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @Entity
 @Table(name = "post")
 @SuppressWarnings("unused")
-public class Post {
+public class Post implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2948690854716125077L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name="user_id", nullable=false, updatable=false)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id", nullable = false, updatable = false)
 	private User user;
 
 	private String title;
@@ -58,6 +67,14 @@ public class Post {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getTitle() {
@@ -108,19 +125,12 @@ public class Post {
 		this.comment = comment;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public List<Category> getCategories() {
+		return categories;
 	}
 
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public List<Category> getCategories() {
-		return categories;
-	}
 }

@@ -1,5 +1,6 @@
 package com.piby.blog.entities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -12,14 +13,20 @@ import javax.persistence.Table;
 
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  * @author marco
  *
  */
 @Entity
 @Table(name = "user")
-public class User {
+public class User implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4902853574452836518L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -33,9 +40,10 @@ public class User {
 
 	@OneToMany(mappedBy = "user")
 	private List<Comment> comment;
+
 	@OneToMany(mappedBy = "user")
 	private List<Category> categories;
-	
+
 	@OneToOne
 	private Inbox cart;
 
@@ -92,14 +100,6 @@ public class User {
 		this.age = age;
 	}
 
-	public Inbox getCart() {
-		return cart;
-	}
-
-	public void setCart(Inbox cart) {
-		this.cart = cart;
-	}
-
 	public List<Post> getPost() {
 		return post;
 	}
@@ -108,20 +108,30 @@ public class User {
 		this.post = post;
 	}
 
+	public List<Comment> getComment() {
+		return comment;
+	}
+
 	public void setComment(List<Comment> comment) {
 		this.comment = comment;
+	}
+
+	public List<Category> getCategories() {
+		return categories;
 	}
 
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}
 
-	public List<Comment> getComment() {
-		return comment;
+	public Inbox getCart() {
+		return cart;
 	}
 
-	public List<Category> getCategories() {
-		return categories;
+	public void setCart(Inbox cart) {
+		this.cart = cart;
 	}
+
+
 
 }
