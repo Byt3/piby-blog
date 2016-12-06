@@ -27,8 +27,10 @@ public class User {
 	private String email;
 	private String password;
 	private int age;
+
 	@OneToMany(mappedBy = "user")
 	private List<Post> post;
+
 	@OneToMany(mappedBy = "user")
 	private List<Comment> comment;
 	@OneToMany(mappedBy = "user")
@@ -106,6 +108,20 @@ public class User {
 		this.post = post;
 	}
 
-	
-	
+	public void setComment(List<Comment> comment) {
+		this.comment = comment;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+
+	public List<Comment> getComment() {
+		return comment;
+	}
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
 }

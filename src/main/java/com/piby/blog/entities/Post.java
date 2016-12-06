@@ -19,15 +19,20 @@ public class Post {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	@ManyToOne
+
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name="user_id", nullable=false, updatable=false)
 	private User user;
+
 	private String title;
 	private Date creationDate;
 	private Date updateDate;
 	private int views;
 	private Double rating;
+
 	@OneToMany(mappedBy = "post")
 	private List<Comment> comment;
+
 	@ManyToMany
 	private List<Category> categories;
 
@@ -103,4 +108,19 @@ public class Post {
 		this.comment = comment;
 	}
 
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public List<Category> getCategories() {
+		return categories;
+	}
 }
