@@ -18,6 +18,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	User findByName(@Param("name") String name);
 
+	User findById(@Param("id") Long id);
+
 	Iterable<User> findByNameOrderByAgeAsc(@Param("name") String name);
 
 	User save(@Param("user") JSObject user);

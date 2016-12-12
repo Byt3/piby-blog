@@ -52,16 +52,6 @@ public class User implements Serializable {
 		this.isAutor = false;
 	}
 
-	public User getResp() {
-		User user = new User();
-		user.setEmail(this.email);
-		user.setName(this.name);
-		user.setId(this.id);
-		user.setAge(this.age);
-		user.setUsername(this.username);
-		return user;
-	}
-
 	public Long getId() {
 		return id;
 	}
