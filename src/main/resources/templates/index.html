@@ -15,8 +15,6 @@
             margin-right: 10%;
         }
         .posts {
-            height: 100px;
-            width: 100px;
         }
     </style>
 
@@ -31,10 +29,15 @@
     <div style="margin-top: 10%">
         <!--All Posts-->
         <div class="row posts" th:each="post : ${posts}">
-            <span style="font-size: 24px;" th:text="${post.title}"></span>
-            <span style="font-size: 18px;" th:text="${post.user.name}"></span>
-            <span style="font-size: 18px;" th:text="${'@' + post.user.username}"></span>
-            <div style="font-size: 12px;" th:text="${post.text}"></div>
+            <div class="col-md-12" >
+                <a th:href="@{'/api/posts/' + ${post.id}}">
+                    <span style="font-size: 24px;" th:text="${'Title: ' + post.title}"></span>
+                </a>
+            </div>
+            <div style="font-size: 18px;" th:text="${'Author: ' +post.user.name}"></div>
+            <span style="font-size: 12px;" th:text="${'@' + post.user.username}"></span>
+            <div class="col-md-12" style="font-size: 14px; margin-top: 5%;" th:text="${post.text}"></div>
+            <hr/>
         </div>
 
     </div>
