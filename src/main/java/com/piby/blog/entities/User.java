@@ -3,15 +3,7 @@ package com.piby.blog.entities;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author marco
@@ -22,15 +14,18 @@ import javax.persistence.Table;
 @SuppressWarnings("unused")
 public class User implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -4902853574452836518L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+	@Column(nullable = false)
 	private String name;
+	@Column(nullable = false, unique = true)
+	private String username;
+	@Column(nullable = false, unique = true)
 	private String email;
+	@Column(name = "is_autor", nullable = false)
+	private boolean isAutor = false;
 	private String password;
 	private int age;
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
@@ -40,11 +35,10 @@ public class User implements Serializable {
 	@OneToOne
 	private Inbox inbox;
 
-	private User() {
-	}
+	private User() { }
 
 	public User(Long id, String name, String email, String password, int age, List<Post> post, List<Comment> comment,
-			Inbox inbox) {
+			Inbox inbox, String username) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -53,7 +47,19 @@ public class User implements Serializable {
 		this.age = age;
 		this.post = post;
 		this.comment = comment;
+		this.username = username;
 		this.inbox = inbox;
+		this.isAutor = false;
+	}
+
+	public User getResp() {
+		User user = new User();
+		user.setEmail(this.email);
+		user.setName(this.name);
+		user.setId(this.id);
+		user.setAge(this.age);
+		user.setUsername(this.username);
+		return user;
 	}
 
 	public Long getId() {
@@ -119,5 +125,27 @@ public class User implements Serializable {
 	public void setComment(List<Comment> comment) {
 		this.comment = comment;
 	}
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public boolean isAutor() {
+		return isAutor;
+	}
+
+	public void setAutor(boolean autor) {
+		isAutor = autor;
+	}
+
+
 
 }
