@@ -35,7 +35,7 @@ public class User implements Serializable {
 	@OneToOne
 	private Inbox inbox;
 
-	private User() { }
+	public User() { }
 
 	public User(Long id, String name, String email, String password, int age, List<Post> post, List<Comment> comment,
 			Inbox inbox, String username) {

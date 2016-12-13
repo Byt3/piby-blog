@@ -22,7 +22,9 @@ public class HomeController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model, Pageable pageable) {
         final Iterable<Post> posts = postRepository.findAll();
+//        User userEmpty = new User();
         model.addAttribute("posts", posts);
+//        model.addAttribute("userSelected", userEmpty);
         return "index";
     }
 
