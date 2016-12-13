@@ -7,26 +7,26 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-    <style>
-        .main_content {
-            margin-left: 10%;
-            margin-right: 10%;
-        }
-        .posts {
-
-        }
-        .navbar {
-            margin-bottom: 100px;
-        }
-    </style>
-
     <title>PiBy Blog</title>
 </head>
-<body class="main_content">
 
-    <div class="navbar" th:include="navbar"></div>
+<div class="panel panel-default" xmlns:th="http://www.thymeleaf.org">
+    <div class="panel-heading">Add new post</div>
+    <div class="panel-body">
 
-    <div class="posts" th:include="posts"></div>
+        <form method="post" enctype="multipart/form-data" action="/api/users">
+            <p>Title: <input type="text" name="title" /></p>
+            <p>Text: <textarea type="text-area" rows="5" cols="40" name="text" /></p>
+            <p>
+                <span th:text="${users}"></span>
+                <select id="type" name="user">
+                    <option th:each="user : ${users}" th:value="${user}" th:text="${user}"></option>
+                </select>
+            </p>
+            <p><input type="submit" value="Confirm" /></p>
+        </form>
 
-</body>
+    </div>
+</div>
+
 </html>

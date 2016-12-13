@@ -24,7 +24,7 @@ public class UserController {
         return new ResponseEntity<User>(userCreated, HttpStatus.CREATED);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/select/users/{id}")
+    @RequestMapping(method = RequestMethod.GET, value = "/view/users/{id}")
     public String getUser(@PathVariable Long id, Model model) {
         User user = userRepository.findById(id);
         model.addAttribute("userSelected", user);
