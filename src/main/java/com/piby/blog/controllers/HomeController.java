@@ -1,7 +1,9 @@
 package com.piby.blog.controllers;
 
+import com.piby.blog.entities.Category;
 import com.piby.blog.entities.Post;
 import com.piby.blog.entities.User;
+import com.piby.blog.repositories.CategoryRepository;
 import com.piby.blog.repositories.PostRepository;
 import com.piby.blog.repositories.UserRepository;
 import javafx.geometry.Pos;
@@ -21,11 +23,15 @@ public class HomeController {
     PostRepository postRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    CategoryRepository categoryRepository;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model, Pageable pageable) {
         final Iterable<Post> posts = postRepository.findAll();
+        final Iterable<Category> categories = categoryRepository.findAll();
         model.addAttribute("posts", posts);
+        model.addAttribute("categories", categories);
         return "index";
     }
 

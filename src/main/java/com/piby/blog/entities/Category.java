@@ -31,7 +31,6 @@ public class Category {
 		this.title = title;
 		this.description = description;
 		this.posts = posts;
-
 	}
 
 	public String getTitle() {

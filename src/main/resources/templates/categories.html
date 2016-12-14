@@ -1,0 +1,10 @@
+<div class="panel panel-default">
+    <div class="panel-heading">Categories</div>
+    <div class="panel-body">
+        <div class="row posts" th:each="category : ${categories}">
+
+            <span style="margin: 1px;" th:text="${category.title}"></span><br/>
+
+        </div>
+    </div>
+</div>

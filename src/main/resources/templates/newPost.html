@@ -10,7 +10,7 @@
     <title>PiBy Blog</title>
 </head>
 
-<div class="panel panel-default" xmlns:th="http://www.thymeleaf.org">
+<div class="panel panel-default">
     <div class="panel-heading">Add new post</div>
     <div class="panel-body">
 
@@ -18,9 +18,8 @@
             <p>Title: <input type="text" name="title" /></p>
             <p>Text: <textarea type="text-area" rows="5" cols="40" name="text" /></p>
             <p>
-                <span th:text="${users}"></span>
                 <select id="type" name="user">
-                    <option th:each="user : ${users}" th:value="${user}" th:text="${user}"></option>
+                    <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.name}"></option>
                 </select>
             </p>
             <p><input type="submit" value="Confirm" /></p>
