@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!--<meta charset="UTF-8" />-->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
@@ -19,12 +19,12 @@
             <p>Text: <textarea type="text-area" rows="5" cols="40" name="text" /></p>
             <p>
                 <select id="posts" name="user">
-                    <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.name}"></option>
+                    <option th:each="user : ${users}" th:value="${user}" th:text="${user.name}"></option>
                 </select>
             </p>
             <p>
                 <select id="categories" name="category">
-                    <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.title}"></option>
+                    <option th:each="category : ${categories}" th:value="${category}" th:text="${category.title}"></option>
                 </select>
             </p>
             <p><input type="submit" value="Confirm" /></p>

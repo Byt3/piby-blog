@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,17 +60,19 @@ public class HomeController {
         return "newPost";
     }
 
-//    @RequestMapping(method = RequestMethod.POST, value = "/api/posts")
-//    public ResponseEntity<?> addNewPost(@RequestBody Post post) {
-//        if(this.postRepository.findByTitle(post.getTitle())) {
-//            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-//        }
-//        //TODO: Add date
-//        postRepository.save(post);
-//
-//        return new ResponseEntity<Post>(post, HttpStatus.OK);
-//
-//    }
+    @RequestMapping(method = RequestMethod.POST, value = "/api/posts",
+            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
+            produces = {MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> addNewPost(Post post) {
+        if(this.postRepository.findByTitle(post.getTitle())) {
+            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+        }
+        //TODO: Add date
+        postRepository.save(post);
+
+        return new ResponseEntity<Post>(post, HttpStatus.OK);
+
+    }
 
 //    @RequestMapping(method = RequestMethod.POST, value = "/api/post")
 //    public ResponseEntity<Void> saveData(@RequestBody Post post, UriComponentsBuilder ucBuilder){
