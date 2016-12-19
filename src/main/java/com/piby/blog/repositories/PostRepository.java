@@ -16,6 +16,6 @@ import com.piby.blog.entities.Post;
 @RepositoryRestResource
 public interface PostRepository extends PagingAndSortingRepository<Post, Long> {
 
-    boolean findByTitle(@Param("title") String title);
+    Post findByTitle(@Param("title") String title);
 
 }

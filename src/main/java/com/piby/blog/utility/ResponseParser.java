@@ -10,6 +10,10 @@ import org.springframework.http.ResponseEntity;
  * @author      Lorenzo D'Isidoro <lorenzo.disidoro@gmail.com>
  * @version     1.2
  * @since       1.0
+ *   ________________________/ O  \___/
+    <_/_\_/_\_/_\_/_\_/_\_/_______/   \
+    Snake crushes your ResponseEntity
+ *
  */
 public class ResponseParser {
 

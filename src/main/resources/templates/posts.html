@@ -11,7 +11,7 @@
 
             <div style="font-size: 18px;" th:text="${'Author: ' +post.user.name}"></div>
 
-            <a target="_blank" th:href="@{'/view/users/' + ${post.user.id}}">
+            <a target="_blank" th:href="@{'/users/' + ${post.user.id}}">
                 <span style="font-size: 12px;" th:text="${'@' + post.user.username}"></span>
             </a>
 

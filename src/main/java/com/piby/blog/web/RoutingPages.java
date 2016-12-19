@@ -1,4 +1,4 @@
-package com.piby.blog.controllers;
+package com.piby.blog.web;
 
 import com.piby.blog.entities.Category;
 import com.piby.blog.entities.Post;
@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -44,6 +45,13 @@ public class RoutingPages {
         model.addAttribute("users", users);
         model.addAttribute("categories", categories);
         return "newPost";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/users/{id}")
+    public String getUser(@PathVariable Long id, Model model) {
+        User user = userRepository.findById(id);
+        model.addAttribute("userSelected", user);
+        return "singleUser";
     }
 
 
