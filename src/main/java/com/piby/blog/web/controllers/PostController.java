@@ -31,9 +31,9 @@ public class PostController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/api/posts")
-    ResponseEntity<?> addNewPost(@RequestBody Post post) {
+    ResponseEntity<?> addNewPost(Post post) {
         Post result = postRepository.save(post);
-        if (this.postRepository.findByTitle(result.getTitle()) != null) {
+        if (this.postRepository.findByTitle(result.getTitle())) {
             return responseParser.generateResponseEntity("POST", true, post, ACTIVE_LOG);
         } else return responseParser.generateResponseEntity("POST", false, new JSONObject(), ACTIVE_LOG);
     }
