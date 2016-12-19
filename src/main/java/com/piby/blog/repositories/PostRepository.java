@@ -7,6 +7,8 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import com.piby.blog.entities.Post;
 
+import java.util.Collection;
+
 /**
  * @author marco
  *

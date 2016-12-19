@@ -8,6 +8,8 @@ import com.piby.blog.repositories.PostRepository;
 import com.piby.blog.repositories.UserRepository;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,9 +36,20 @@ public class RoutingPages {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model, Pageable pageable) {
-        final Iterable<Post> posts = postRepository.findAll();
+
+        if (pageable.getPageNumber() == 0) {
+            pageable = new PageRequest(0, 3);
+        }
+        final Page<Post> page = postRepository.findAll(pageable);
+        model.addAttribute("page", page);
+        if (page.hasPrevious()) {
+            model.addAttribute("prev", pageable.previousOrFirst());
+        }
+        if (page.hasNext()) {
+            model.addAttribute("next", pageable.next());
+        }
+
         final Iterable<Category> categories = categoryRepository.findAll();
-        model.addAttribute("posts", posts);
         model.addAttribute("categories", categories);
         this.generalSetting.put("view", "home");
         model.addAttribute("generalSetting", this.generalSetting);

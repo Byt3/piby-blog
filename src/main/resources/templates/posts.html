@@ -1,6 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-body">
-        <div class="row posts" th:each="post : ${posts}">
+        <div class="row posts" th:each="post : ${page.content}">
 
             <div>
                 <a th:href="@{'/api/posts/' + ${post.id}}">
@@ -20,3 +20,12 @@
         </div>
     </div>
 </div>
+
+<ul class="pagination">
+    <li class="disabled" th:if="${prev}"><a th:href="@{/(size=${prev.pageSize},page=${prev.pageNumber})}">
+        <i class="large material-icons">Prev</i>
+    </a></li>
+    <li class="waves-effect" th:if="${next}"><a th:href="@{/(size=${next.pageSize},page=${next.pageNumber})}">
+        <i class="large material-icons">Next</i>
+    </a></li>
+</ul>

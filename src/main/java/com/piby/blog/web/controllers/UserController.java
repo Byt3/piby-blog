@@ -17,11 +17,11 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @RequestMapping(value = "/api/users", method = RequestMethod.POST)
-    public ResponseEntity<User> addNewUser(@RequestBody User user, HttpServletRequest servletRequest) throws URISyntaxException {
-        userRepository.save(user);
-        User userCreated = userRepository.findOne(user.getId());
-        return new ResponseEntity<User>(userCreated, HttpStatus.CREATED);
-    }
+//    @RequestMapping(value = "/api/users", method = RequestMethod.POST)
+//    public ResponseEntity<User> addNewUser(@RequestBody User user, HttpServletRequest servletRequest) throws URISyntaxException {
+//        userRepository.save(user);
+//        User userCreated = userRepository.findOne(user.getId());
+//        return new ResponseEntity<User>(userCreated, HttpStatus.CREATED);
+//    }
 
 }
