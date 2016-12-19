@@ -21,14 +21,14 @@ public class RoutingPages {
     PostRepository postRepository;
     UserRepository userRepository;
     CategoryRepository categoryRepository;
-    String currentView;
+    JSONObject generalSetting = new JSONObject();
 
     @Autowired
     public RoutingPages(PostRepository postRepository, UserRepository userRepository, CategoryRepository categoryRepository) {
         this.postRepository = postRepository;
         this.userRepository = userRepository;
         this.categoryRepository = categoryRepository;
-        this.currentView = "home";
+        this.generalSetting.put("view", "home");
     }
 
 
@@ -38,8 +38,8 @@ public class RoutingPages {
         final Iterable<Category> categories = categoryRepository.findAll();
         model.addAttribute("posts", posts);
         model.addAttribute("categories", categories);
-        this.currentView = "home";
-        model.addAttribute("currentView", this.currentView);
+        this.generalSetting.put("view", "home");
+        model.addAttribute("generalSetting", this.generalSetting);
         return "index";
     }
 
@@ -49,8 +49,8 @@ public class RoutingPages {
         final Iterable<Category> categories = categoryRepository.findAll();
         model.addAttribute("users", users);
         model.addAttribute("categories", categories);
-        this.currentView = "newPost";
-        model.addAttribute("currentView", this.currentView);
+        this.generalSetting.put("view", "newPost");
+        model.addAttribute("generalSetting", this.generalSetting);
         return "index";
     }
 

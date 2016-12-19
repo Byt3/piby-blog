@@ -35,18 +35,10 @@
     <div class="navbar" th:include="navbar"></div>
 
     <!--Routing pages-->
-
-    <th:block th:switch="${generalSettings}">
-        <div th:case="'home'">
-            <div class="posts" th:include="posts"></div>
-        </div>
-        <div th:case="'newPost'">
-            <div class="" th:include="newPost"></div>
-        </div>
+    <th:block th:switch="${generalSetting.view}">
+        <div th:case="'home'" th:include="posts"></div>
+        <div th:case="'newPost'" th:include="newPost"></div>
     </th:block>
-
-    <!--<div class="posts" th:if="${generalSettings=='home'}" th:include="posts"></div>-->
-    <!--<div class="" th:if="${generalSettings=='newPost'}" th:include="newPost"></div>-->
     <!--End routing pages-->
 
     <!--Footer-->
