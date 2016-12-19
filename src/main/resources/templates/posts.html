@@ -1,3 +1,9 @@
+<style>
+    .center {
+        width: 50%;
+        margin: 0 auto;
+    }
+</style>
 <div class="panel panel-default">
     <div class="panel-body">
         <div class="row posts" th:each="post : ${page.content}">
@@ -21,7 +27,7 @@
     </div>
 </div>
 
-<ul class="pagination">
+<ul class="pagination center">
     <li class="disabled" th:if="${prev}"><a th:href="@{/(size=${prev.pageSize},page=${prev.pageNumber})}">
         <i class="large material-icons">Prev</i>
     </a></li>
