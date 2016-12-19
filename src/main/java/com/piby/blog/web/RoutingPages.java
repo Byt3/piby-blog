@@ -6,6 +6,7 @@ import com.piby.blog.entities.User;
 import com.piby.blog.repositories.CategoryRepository;
 import com.piby.blog.repositories.PostRepository;
 import com.piby.blog.repositories.UserRepository;
+import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -20,12 +21,14 @@ public class RoutingPages {
     PostRepository postRepository;
     UserRepository userRepository;
     CategoryRepository categoryRepository;
+    String currentView;
 
     @Autowired
     public RoutingPages(PostRepository postRepository, UserRepository userRepository, CategoryRepository categoryRepository) {
         this.postRepository = postRepository;
         this.userRepository = userRepository;
         this.categoryRepository = categoryRepository;
+        this.currentView = "home";
     }
 
 
@@ -35,6 +38,8 @@ public class RoutingPages {
         final Iterable<Category> categories = categoryRepository.findAll();
         model.addAttribute("posts", posts);
         model.addAttribute("categories", categories);
+        this.currentView = "home";
+        model.addAttribute("currentView", this.currentView);
         return "index";
     }
 
@@ -44,7 +49,9 @@ public class RoutingPages {
         final Iterable<Category> categories = categoryRepository.findAll();
         model.addAttribute("users", users);
         model.addAttribute("categories", categories);
-        return "newPost";
+        this.currentView = "newPost";
+        model.addAttribute("currentView", this.currentView);
+        return "index";
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/users/{id}")
