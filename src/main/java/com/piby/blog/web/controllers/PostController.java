@@ -29,9 +29,9 @@ public class PostController {
         this.userRepository = userRepository;
         this.categoryRepository = categoryRepository;
     }
-
+//
 //    @RequestMapping(method = RequestMethod.POST, value = "/api/posts")
-//    ResponseEntity<?> addNewPost(Post post) {
+//    ResponseEntity<?> addNewPost(@RequestBody Post post) {
 //        Post result = postRepository.save(post);
 //        if (this.postRepository.findByTitle(result.getTitle())) {
 //            return responseParser.generateResponseEntity("POST", true, post, ACTIVE_LOG);

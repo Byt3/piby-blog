@@ -1,13 +1,15 @@
 package com.piby.blog.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  * @author marco
@@ -18,9 +20,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @SuppressWarnings("unused")
 public class Post implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 2948690854716125077L;
 
 	@Id
@@ -28,18 +27,19 @@ public class Post implements Serializable {
 	private Long id;
 	@NotNull
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "users_id", nullable = false)
+	@JoinColumn(name = "users_id")
 	private User user;
 	@Column(nullable = false)
 	private String title;
 	@Column(nullable = false)
 	private String text;
-	private Date creationDate;
+	private Date creationDate = new Date();
 	private Date updateDate;
 	private int views;
 	@JsonIgnore
 	private Double rating;
-	@OneToMany(mappedBy = "post")
+	@OneToMany(mappedBy = "post", orphanRemoval = true)
+	@Fetch(FetchMode.SELECT)
 	private List<Comment> comment;
 	@ManyToMany(mappedBy = "posts")
 	private List<Category> categories;
@@ -54,7 +54,6 @@ public class Post implements Serializable {
 		this.user = user;
 		this.title = title;
 		this.text = text;
-		this.creationDate = creationDate;
 		this.updateDate = updateDate;
 		this.views = views;
 		this.rating = rating;
@@ -142,4 +141,15 @@ public class Post implements Serializable {
 		this.categories = categories;
 	}
 
+    @Override
+    public String toString() {
+        return "Post{" +
+                "user=" + user +
+                ", title='" + title + '\'' +
+                ", text='" + text + '\'' +
+                ", creationDate=" + creationDate +
+                ", views=" + views +
+                ", rating=" + rating +
+                '}';
+    }
 }

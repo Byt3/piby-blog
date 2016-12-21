@@ -57,7 +57,7 @@ public class RoutingPages {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/new_post")
-    public String getUser(Model model) {
+    public String getPost(Model model) {
         final Iterable<User> users = userRepository.findAll();
         final Iterable<Category> categories = categoryRepository.findAll();
         model.addAttribute("users", users);
@@ -72,6 +72,13 @@ public class RoutingPages {
         User user = userRepository.findById(id);
         model.addAttribute("userSelected", user);
         return "singleUser";
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, value = "/delete_post/{id}")
+    public String removePost(@PathVariable Long id, Model model) {
+        postRepository.delete(id);
+        model.addAttribute("postRemoved", true);
+        return "index";
     }
 
 

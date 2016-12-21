@@ -136,6 +136,4 @@ public class User implements Serializable {
 		isAutor = autor;
 	}
 
-
-
 }

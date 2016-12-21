@@ -20,4 +20,7 @@ public interface PostRepository extends PagingAndSortingRepository<Post, Long> {
 
     boolean findByTitle(@Param("title") String title);
 
+    Post findById(@Param("id") Long id);
+
+    boolean deletePostById(@Param("id") Long id);
 }
