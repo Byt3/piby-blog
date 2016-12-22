@@ -1,0 +1,55 @@
+<style>
+
+    .glyphicon {  margin-bottom: 10px;margin-right: 10px;}
+
+    small {
+        display: block;
+        line-height: 1.428571429;
+        color: #999;
+    }
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<div class="container" style="margin-top: 1%;">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <img src="http://assets2.ignimgs.com/2015/08/06/darth-vader-crossed-arms-1280jpg-88461e1280wjpg-67c0c2_1280w.jpg" alt="" class="img-rounded img-responsive" />
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4 th:text="${userSelected.name}"></h4>
+                        <small><i class="glyphicon glyphicon-user"></i><span th:text="${userSelected.username}"></span></small>
+                        <p>
+                            <i class="glyphicon glyphicon-envelope"></i> <span th:text="${userSelected.email}"></span>
+                            <br />
+                            <!--<i class="glyphicon glyphicon-globe"></i><a href="http://www.jquery2dotnet.com">www.jquery2dotnet.com</a>-->
+                            <!--<br />-->
+                            <i class="glyphicon glyphicon-gift"></i> <span th:text="${userSelected.age}"></span>
+                        </p>
+                        <!-- Split button -->
+                        <!--<div class="btn-group">-->
+                            <!--<button type="button" class="btn btn-primary">-->
+                                <!--Social</button>-->
+                            <!--<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">-->
+                                <!--<span class="caret"></span><span class="sr-only">Social</span>-->
+                            <!--</button>-->
+                            <!--<ul class="dropdown-menu" role="menu">-->
+                                <!--<li><a href="#">Twitter</a></li>-->
+                                <!--<li><a href="https://plus.google.com/+Jquery2dotnet/posts">Google +</a></li>-->
+                                <!--<li><a href="https://www.facebook.com/jquery2dotnet">Facebook</a></li>-->
+                                <!--<li class="divider"></li>-->
+                                <!--<li><a href="#">Github</a></li>-->
+                            <!--</ul>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

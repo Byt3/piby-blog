@@ -1,0 +1,43 @@
+<!--<form id="" method="post"  enctype="multipart/form-data" action="/api/posts">-->
+<!--<p>Title: <input type="text" name="title" /></p>-->
+<!--<p>Text: <textarea type="text-area" rows="20" cols="40" name="text"/></p>-->
+<!--<p>-->
+<!--<select id="posts" name="user">-->
+<!--<option th:each="user : ${users}" th:value="${user.id}" th:text="${user.name}"></option>-->
+<!--</select>-->
+<!--</p>-->
+<!--<p>-->
+<!--&lt;!&ndash;<select id="categories" name="category">&ndash;&gt;-->
+<!--&lt;!&ndash;<option th:each="category : ${categories}" th:value="${category}" th:text="${category.id}"></option>&ndash;&gt;-->
+<!--&lt;!&ndash;</select>&ndash;&gt;-->
+<!--</p>-->
+<!--<p><input type="submit" value="Confirm" /></p>-->
+<!--</form>-->
+
+<div id="post_form" class="row">
+    <form method="post" action="/api/posts">
+        <div class="col s8">
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="title" type="text" name="title" class="validate"/>
+                    <label for="title">Title</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea id="text" class="materialize-textarea" name="text"></textarea>
+                    <label for="text">Text</label>
+                </div>
+            </div>
+        </div>
+        <div class="col s12">
+            <div class="input-field">
+                <select id="posts" name="user">
+                    <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.name}"></option>
+                </select>
+            </div>
+        </div>
+
+        <input type="submit" value="Confirm" />
+    </form>
+</div>

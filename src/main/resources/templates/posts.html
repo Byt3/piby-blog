@@ -1,0 +1,43 @@
+<style>
+    .center {
+        width: 50%;
+        margin: 0 auto;
+    }
+</style>
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div class="row posts" th:each="post : ${page.content}">
+
+            <div class="col s8">
+                <div>
+                    <a th:href="@{'/api/posts/' + ${post.id}}">
+                        <span style="font-size: 24px;" th:text="${'Title: ' + post.title}"></span>
+                    </a>
+                </div>
+
+                <div style="font-size: 18px;" th:text="${'Author: ' +post.user.name}"></div>
+
+                <a target="_blank" th:href="@{'/users/' + ${post.user.id}}">
+                    <span style="font-size: 12px;" th:text="${'@' + post.user.username}"></span>
+                </a>
+
+                <div style="font-size: 14px;" th:text="${post.text}"></div>
+            </div>
+            <div class="col s4">
+                <!--<button th:method="delete" th:href="@{'/delete_post/'+${post.id}}">Delete</button>-->
+                <form th:method="delete" enctype="multipart/form-data" th:action="@{'/delete_post/' + ${post.id}}">
+                    <p><input type="submit" value="delete" /></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ul class="pagination center">
+    <li class="disabled" th:if="${prev}"><a th:href="@{/(size=${prev.pageSize},page=${prev.pageNumber})}">
+        <i class="large material-icons">Prev</i>
+    </a></li>
+    <li class="waves-effect" th:if="${next}"><a th:href="@{/(size=${next.pageSize},page=${next.pageNumber})}">
+        <i class="large material-icons">Next</i>
+    </a></li>
+</ul>
