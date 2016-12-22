@@ -33,7 +33,7 @@ public class Post implements Serializable {
 	private String title;
 	@Column(nullable = false)
 	private String text;
-	private Date creationDate = new Date();
+	private Date creationDate;
 	private Date updateDate;
 	private int views;
 	@JsonIgnore
@@ -59,6 +59,7 @@ public class Post implements Serializable {
 		this.rating = rating;
 		this.comment = comment;
 		this.categories = categories;
+		this.creationDate = new Date();
 	}
 
 	public String getText() {

@@ -36,7 +36,6 @@ public class RoutingPages {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model, Pageable pageable) {
-
         if (pageable.getPageNumber() == 0) {
             pageable = new PageRequest(0, 3);
         }
@@ -75,10 +74,9 @@ public class RoutingPages {
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/delete_post/{id}")
-    public String removePost(@PathVariable Long id, Model model) {
+    public String removePost(@PathVariable Long id, Model model, Pageable pageable) {
         postRepository.delete(id);
-        model.addAttribute("postRemoved", true);
-        return "index";
+        return "redirect:/";
     }
 
 

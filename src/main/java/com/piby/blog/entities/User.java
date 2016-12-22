@@ -29,7 +29,7 @@ public class User implements Serializable {
 	private String password;
 	private int age;
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-	private List<Post> post;
+	private List<Post> posts;
 	@OneToMany(mappedBy = "user")
 	private List<Comment> comment;
 	@OneToOne
@@ -37,7 +37,7 @@ public class User implements Serializable {
 
 	public User() { }
 
-	public User(Long id, String name, String email, String password, int age, List<Post> post, List<Comment> comment,
+	public User(Long id, String name, String email, String password, int age, List<Post> posts, List<Comment> comment,
 			Inbox inbox, String username) {
 		super();
 		this.id = id;
@@ -45,7 +45,7 @@ public class User implements Serializable {
 		this.email = email;
 		this.password = password;
 		this.age = age;
-		this.post = post;
+		this.posts = posts;
 		this.comment = comment;
 		this.username = username;
 		this.inbox = inbox;
@@ -101,11 +101,11 @@ public class User implements Serializable {
 	}
 
 	public List<Post> getPost() {
-		return post;
+		return posts;
 	}
 
-	public void setPost(List<Post> post) {
-		this.post = post;
+	public void setPost(List<Post> posts) {
+		this.posts = posts;
 	}
 
 	public List<Comment> getComment() {
